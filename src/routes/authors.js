@@ -25,6 +25,26 @@ router.get('/',async (request,response)=>{
     }
 })
 
+router.get('/:id',async(request,response) =>{
+    try {
+        const authorId = request.params.id
+        const author = await authors.getById(authorId)
+        response.json({
+            success: true,
+            data: {
+                author
+            }
+        })
+    } catch (error) {
+        response.status(error.status || 400)
+        response.json({
+            success:false,
+            error: error.message
+        })
+    }
+
+})
+
 router.post('/', auth, async (request,response)=>{
     try {
         const newAuthorData = request.body

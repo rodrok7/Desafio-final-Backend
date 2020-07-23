@@ -1,10 +1,15 @@
 const authors = require('../models/author')
 const bcrypt = require('../lib/bcrypt')
 const jwt = require('../lib/jwt')
+const author = require('../models/author')
 
 
 function getAll () {
     return authors.find()
+}
+
+function getById(authorId){
+    return authors.findById(authorId)
 }
 
 function create (authorData){
@@ -43,6 +48,7 @@ function update (authorId, dataUpdate) {
 
 module.exports = {
     getAll,
+    getById,
     create,
     deletee,
     update,
