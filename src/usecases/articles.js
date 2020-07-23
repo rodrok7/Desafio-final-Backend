@@ -1,6 +1,7 @@
 const articles = require('../models/article')
 
 
+
 function getAll () {
     return articles.find()
 }
@@ -8,6 +9,8 @@ function getAll () {
 function create (articleData){
     return articles.create(articleData)
 }
+
+
 
 function deletee (articleId) {
     return articles.findByIdAndRemove(articleId)

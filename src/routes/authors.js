@@ -3,6 +3,7 @@ const express = require('express')
 
 const router = express.Router()
 const authors = require('../usecases/authors')
+const auth = require('../middlewares/auth')
 
 
 router.get('/',async (request,response)=>{
@@ -24,7 +25,7 @@ router.get('/',async (request,response)=>{
     }
 })
 
-router.post('/',async (request,response)=>{
+router.post('/', auth, async (request,response)=>{
     try {
         const newAuthorData = request.body
         const newAuthor = await authors.create(newAuthorData)
@@ -43,7 +44,7 @@ router.post('/',async (request,response)=>{
     }
 })
 
-router.delete('/:id',async (request,response)=>{
+router.delete('/:id', auth, async (request,response)=>{
     try {
         const id = request.params.id
         const authorToDelete = await authors.deletee(id)
@@ -64,7 +65,7 @@ router.delete('/:id',async (request,response)=>{
     }  
 })
 
-router.patch('/:id',async (request,response)=>{
+router.patch('/:id', auth, async (request,response)=>{
     try {
         const id = request.params.id
         const dataToUpdate = request.body
