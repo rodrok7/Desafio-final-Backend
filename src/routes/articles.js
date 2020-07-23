@@ -25,6 +25,26 @@ router.get('/',async (request,response)=>{
     }
 })
 
+router.get('/:id',async(request,response) =>{
+    try {
+        const articleId = request.params.id
+        const article = await articles.getById(articleId)
+        response.json({
+            success: true,
+            data: {
+                article
+            }
+        })
+    } catch (error) {
+        response.status(error.status || 400)
+        response.json({
+            success:false,
+            error: error.message
+        })
+    }
+
+})
+
 router.post('/', auth, async (request,response)=>{
     try {
         const newArticleData = request.body
