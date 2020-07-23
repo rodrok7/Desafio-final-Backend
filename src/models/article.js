@@ -10,7 +10,7 @@ const articleSchema = new mongoose.Schema({
     type: String,
     require: true
     },
-    section: {
+    category: {
     type: String,
     required: true
     },
@@ -18,8 +18,17 @@ const articleSchema = new mongoose.Schema({
     type: Date,
     required: true
     },
-    writer: {
-    
+    author: {
+        type: String,
+        required:true
+    },
+    description:{
+        type: String,
+        required:true
+    },
+    imageurl:{
+        type:String,
+        required:true
     }
 
 })

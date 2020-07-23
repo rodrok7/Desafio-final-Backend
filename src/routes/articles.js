@@ -10,12 +10,9 @@ router.get('/',async (request,response)=>{
     try {
         const allArticles = await articles.getAll()
 
-        response.json({
-            success: true,
-            data:{
-               authors: allArticles
-            }
-        })
+        response.json(
+             allArticles
+        )
     } catch (error) {
         response.status(error.status || 400)
         response.json({
